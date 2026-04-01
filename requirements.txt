@@ -1,4 +1,4 @@
-python-dotenv==1.0.0
-google-generativeai==0.8.2
-streamlit==1.55.0
-pandas==2.2.2
+python-dotenv
+google-generativeai
+streamlit
+pandas
