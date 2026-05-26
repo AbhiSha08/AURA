@@ -1,0 +1,50 @@
+# ── Virtual Environments ──────────────────────────────────────────────────────
+venv/
+env/
+.venv/
+.env/
+
+# ── Python Cache ──────────────────────────────────────────────────────────────
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# ── Environment & Secrets ─────────────────────────────────────────────────────
+.env
+*.env
+secrets.toml
+.streamlit/secrets.toml
+
+# ── Git & IDE ─────────────────────────────────────────────────────────────────
+.git/
+.gitignore
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ── Synthetic / Test Data (massive files — never ship to prod) ────────────────
+stress_test_log.json
+nested_test_log.json
+mapped_events.json
+event_mapper.log
+
+# ── Build & Utility Scripts ───────────────────────────────────────────────────
+generate_stress_test.py
+strip.py
+
+# ── Documentation & Assets (not needed at runtime) ───────────────────────────
+docs/
+assets/
+README.md
+LICENSE
+
+# ── Docker artifacts ──────────────────────────────────────────────────────────
+Dockerfile
+docker-compose*.yml
+.dockerignore
+
+# ── Gemini / Agent artifacts ──────────────────────────────────────────────────
+.gemini/

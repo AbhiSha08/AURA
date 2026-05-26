@@ -1,146 +1,71 @@
 # 🛡️ AURA: Automated User-Risk Analysis
 
-A sophisticated cybersecurity platform that leverages Google Gemini AI to analyze Windows Event Logs and automatically map them to the MITRE ATT&CK framework. Features a professional Cyber-Pro Dark theme with custom HTML threat cards and real-time threat visualization.
-
-## 🚀 Features
-
-- **Cyber-Pro Dark Theme**: Professional dark interface with electric blue accents (#00D1FF)
-- **Custom HTML Threat Cards**: Dynamic color-coded borders based on threat levels
-- **MITRE ATT&CK Integration**: Automatic mapping to attack techniques and tactics
-- **Real-time Visualization**: Sequential event numbering with professional headers
-- **AI-Powered Analysis**: Google Gemini 3.1 Flash-Lite backend with 25-event batch processing
-- **Multi-format Export**: CSV and JSON export with dynamic intelligence labels
-- **Threat Intelligence**: 🔴 Critical, 🟠 Moderate, 🟡 Low, 🔵 None tier classification
-- **GitHub Integration**: Functional repository link in the header
-- **Professional SOC Dashboard**: Enterprise-grade security operations center appearance
-
-## 🛠️ Tech Stack
-
-- **Frontend**: Streamlit with custom CSS injection
-- **Backend**: Google Gemini 3.1 Flash-Lite AI
-- **Framework**: MITRE ATT&CK v12.0
-- **Styling**: Inter headers, Roboto Mono technical data
-- **Processing**: Batch optimization for large datasets
-- **Security**: Environment variable API key management
-
-## 📋 Installation
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/AbhijeetSharma/AURA.git
-   cd AURA
-   ```
-
-2. Create and activate virtual environment:
-   ```bash
-   python -m venv venv
-   venv\Scripts\Activate  # Windows
-   source venv/bin/activate  # Linux/Mac
-   ```
-
-3. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-## ⚙️ Configuration
-
-1. Copy the example environment file:
-   ```bash
-   copy .env.example .env
-   ```
-
-2. Edit `.env` file with your Google Gemini API key:
-   ```
-   GENAI_API_KEY=your_google_gemini_api_key_here
-   ```
-
-## 🎯 Usage
-
-Run the AURA application:
-```bash
-streamlit run app.py
-```
-
-The application will open in your browser at `http://localhost:8501`
-
-## 📊 Features Overview
-
-### Threat Analysis
-- **Upload Windows Event Logs** (CSV/JSON format)
-- **Real-time AI Analysis** using Gemini 3.1 Flash-Lite
-- **MITRE ATT&CK Mapping** with technique identification
-- **Confidence Scoring** (0-10 scale with color coding)
-
-### Visual Intelligence
-- **Color-Coded Threat Cards**: Red (Critical), Orange (Moderate), Yellow (Low), Blue (None)
-- **Sequential Event Numbering**: Event 1, Event 2, Event 3...
-- **Professional Dashboard**: SOC-grade interface design
-- **Dynamic Export**: CSV/JSON with format-specific labels
-
-### Enterprise Features
-- **Batch Processing**: 25-event optimization for large datasets
-- **Error Handling**: Comprehensive logging and graceful failures
-- **Multi-Format Support**: CSV and JSON event log formats
-- **Security**: API key protection via environment variables
-
-## 🎨 UI Features
-
-### Cyber-Pro Dark Theme
-- **Electric Blue Accents** (#00D1FF) for primary actions
-- **High-Contrast Design** for maximum visibility
-- **Professional Typography**: Inter headers, Roboto Mono data
-- **Smooth Animations**: Hover effects and transitions
-
-### Threat Visualization
-- **Dynamic Borders**: Color changes based on confidence scores
-- **Pulsing Red Alerts**: High-confidence threat indicators
-- **Summary Metrics**: Real-time threat statistics
-- **Command Line Display**: Terminal-style code presentation
-
-## 📈 Sample Threat Analysis
-
-```
-Event 1: Event ID 4688
-┌─────────────────────────────────────────────────────────────┐
-│ 🔴 Critical (9/10)                                          │
-├─────────────┬─────────────┬─────────────────────────────────┤
-│ Identity    │ MITRE ATT&CK │ Threat Analysis                │
-│ 🆔 4688     │ 🎯 Execution│ 🔴 Critical (9/10)             │
-│ ⚙️ powershell│ 🔍 T1059.001 │ Suspicious PowerShell activity │
-│ 📁 svchost   │ PowerShell  │ detected with network call    │
-└─────────────┴─────────────┴─────────────────────────────────┘
-Command: powershell.exe -Command "Invoke-Expression..."
-```
-
-## 🛡️ Security Considerations
-
-- **API Key Protection**: Stored in environment variables only
-- **Input Validation**: Comprehensive file format validation
-- **Error Logging**: Detailed audit trail without sensitive data
-- **Network Security**: Timeout protection and retry logic
-
-## 📚 Dependencies
-
-- **streamlit**: Web application framework
-- **google-generativeai**: Gemini AI API client
-- **pandas**: Data manipulation and export
-- **python-dotenv**: Environment variable management
-- **pydantic**: Data validation and structured responses
-
-## 🎓 Perfect For
-
-- **6th-Semester Cybersecurity Projects**
-- **Security Operations Center (SOC) Tools**
-- **Threat Intelligence Platforms**
-- **Enterprise Security Demonstrations**
-- **MITRE ATT&CK Research**
-
-## 📞 Support
-
-This project is designed for educational and professional cybersecurity demonstrations. For questions or issues, please use the GitHub repository.
+**A lightning-fast, deterministic Threat Intelligence platform and SOC engine.** 
+AURA maps massive volumes of Windows Event Logs to the MITRE ATT&CK framework with sub-second latency. Operating entirely locally without external AI/API dependencies, it ensures absolute data privacy and predictable, instantaneous threat detection for enterprise environments.
 
 ---
 
-**🛡️ AURA | Automated User-Risk Analysis**
-*Advanced threat intelligence powered by Google Gemini AI*
+## ✨ Key Features
+
+- **Sub-Second Deterministic Engine:** Capable of parsing, flattening, and classifying 10,000+ deeply nested Windows Event Logs in under a second using compiled regex and highly optimized rule dictionaries.
+- **Dynamic STIX 2.1 Ingestion:** Auto-fetches and caches official MITRE ATT&CK STIX 2.1 JSON definitions. Ensures tactics, techniques, descriptions, and mitigations are comprehensively accurate.
+- **Production-Grade Containerization:** Packaged via a highly secure, multi-stage Dockerfile adhering to Twelve-Factor App principles. Runs exclusively under a restricted non-root profile and streams all telemetry to standard output.
+- **Executive SOC Dashboard:** A high-density Streamlit UI designed for analysts, featuring instantaneous metrics, dynamic severity-matched UI components, and deep-dive IOC threat cards.
+
+---
+
+## 🏗️ Architecture
+
+AURA is powered by a specialized **Two-Stage Engine**:
+
+### Stage 1: Regex & EventID Mapping
+The core engine (`event_mapper.py`) rapidly ingests raw JSON/CSV Windows Event Logs. It flattens deeply nested structures and applies static lookup dictionaries for well-known Event IDs (e.g., 4688, 4625, 1102). It simultaneously runs compiled regex heuristics against command lines and processes to assign base classifications and confidence scores.
+
+### Stage 2: STIX Enrichment via Local Cache
+The `mitre_ingestor.py` component seamlessly enriches the initial classifications. It securely queries the MITRE Enterprise STIX repository (caching results locally for 24 hours to prevent rate-limiting) and appends authoritative kill-chain phases, technique descriptions, and mitigation strategies. If isolated from the internet, it gracefully relies on a robust embedded fallback database.
+
+---
+
+## 🚀 Installation & Deployment
+
+### Docker Deployment (Recommended)
+AURA is fully containerized for secure, immediate deployment.
+
+```bash
+# 1. Build the highly optimized production image
+docker build -t aura-soc-dashboard:latest .
+
+# 2. Run the secure, detached container
+docker run -d -p 8501:8501 --name aura-live aura-soc-dashboard:latest
+```
+*Access the dashboard at [http://localhost:8501](http://localhost:8501)*
+
+### Local Python Execution
+To run AURA directly on your host machine:
+
+```bash
+# 1. Create a virtual environment
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+# 2. Install dependencies
+pip install -r requirements.txt
+
+# 3. Launch the dashboard
+streamlit run app.py
+```
+
+---
+
+## 📖 Usage Guide
+
+1. **Access the Dashboard:** Open your browser to the deployed URL (e.g., `http://localhost:8501`).
+2. **Upload Telemetry:** Use the sidebar menu to either drag-and-drop a Windows Event Log file (`.json` or `.csv`) or provide a local, path-traversal-protected workspace file path.
+3. **Execute Analysis:** Click **Run AURA Analysis**. The deterministic engine will parse and map thousands of logs in milliseconds.
+4. **Investigate Threats:** Review the dynamic executive metric blocks. Expand individual high-risk threat cards to extract Indicators of Compromise (IOCs), view sanitized process commands, and read mitigation steps.
+
+---
+
+## 📜 License
+
+This project is licensed under the **MIT License**.

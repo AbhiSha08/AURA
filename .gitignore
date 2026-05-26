@@ -1,0 +1,5 @@
+event_mapper.log
+__pycache__/
+*.json
+!test_log.json
+.env
